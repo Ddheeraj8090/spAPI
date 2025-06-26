@@ -1,0 +1,20 @@
+{
+  "name": "node-sql-server-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "axios": "^1.9.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mssql": "^11.0.1",
+    "mysql2": "^3.14.1",
+    "node-sql-server-app": "file:",
+    "serverless-http": "^3.2.0"
+  }
+}

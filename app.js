@@ -7,13 +7,13 @@ const { escapeHTML } = require('./utils');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/query/html', async (req, res) => {
   const userPrompt = req.body.prompt;
+
   if (!userPrompt) {
     res.set('Content-Type', 'text/html');
     return res.status(400).send(`
@@ -39,16 +39,13 @@ app.post('/query/html', async (req, res) => {
     console.error('❌ Error:', error.message);
     res.set('Content-Type', 'text/html');
     res.status(500).send(`
-     <div style="font-family: sans-serif; color: #d32f2f; padding: 20px; text-align: center;">
-  <h3>Oops! Something went wrong.</h3>
-  <p>${escapeHTML(error.message)}</p>
-  <p>Tip: Try rephrasing your question, for example: "What are the top selling products this month?" or "Show me sales trends for the past months."</p>
-</div>
-
+      <div style="font-family: sans-serif; color: #d32f2f; padding: 20px; text-align: center;">
+        <h3>Oops! Something went wrong.</h3>
+        <p>${escapeHTML(error.message)}</p>
+        <p>Tip: Try rephrasing your question, for example: "What are the top selling products this month?"</p>
+      </div>
     `);
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-});
+module.exports = app;
